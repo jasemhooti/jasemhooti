@@ -16,17 +16,14 @@ pip3 install --upgrade pip
 
 # دانلود سورس کد از گیت‌هاب
 REPOSITORY_URL="https://github.com/jasemhooti/jasemhooti.git"
-BOT_FOLDER="netbox_bot"
-
-if [ -d "$BOT_FOLDER" ]; then
-    echo "پوشه $BOT_FOLDER از قبل وجود دارد. حذف می‌شود..."
-    rm -rf "$BOT_FOLDER"
-fi
 
 if [ -d "jasemhooti" ]; then
     echo "پوشه jasemhooti از قبل وجود دارد. حذف می‌شود..."
     rm -rf "jasemhooti"
 fi
+
+echo "دانلود سورس کد از $REPOSITORY_URL..."
+git clone "$REPOSITORY_URL"
 
 # رفتن به پوشه ربات
 cd "jasemhooti"
