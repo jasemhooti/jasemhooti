@@ -27,7 +27,7 @@ echo "دانلود سورس کد از $REPOSITORY_URL..."
 git clone "$REPOSITORY_URL"
 
 # رفتن به پوشه ربات
-cd "$BOT_FOLDER"
+cd "jasemhooti"
 
 # ایجاد محیط مجازی
 echo "ایجاد محیط مجازی پایتون..."
