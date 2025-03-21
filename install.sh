@@ -11,8 +11,15 @@ echo "نصب پیش‌نیازها..."
 sudo apt update
 sudo apt install -y python3 python3-pip git screen python3-venv # نصب پیش‌نیازها
 
+# نصب pipx اگر نصب نشده باشد
+if ! command -v pipx &> /dev/null
+then
+    echo "pipx یافت نشد، در حال نصب pipx..."
+    sudo apt install pipx
+fi
+
 # ارتقاء pip
-sudo pip3 install --upgrade pip
+pip3 install --user --upgrade pip
 
 # دانلود سورس کد از گیت‌هاب
 REPOSITORY_URL="https://github.com/jasemhooti/jasemhooti.git"
@@ -30,7 +37,7 @@ cd "jasemhooti"
 
 # نصب کتابخانه‌های پایتون با استفاده از pip
 echo "نصب کتابخانه‌های پایتون..."
-sudo pip3 install -r requirements.txt
+pip3 install --user -r requirements.txt
 
 # ایجاد فایل تنظیمات (اگر وجود ندارد) و جایگزینی مقادیر
 if [ ! -f "config.py" ]; then
