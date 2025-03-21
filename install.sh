@@ -37,9 +37,10 @@ python3 -m venv venv
 echo "فعال کردن محیط مجازی..."
 source venv/bin/activate
 
-# نصب کتابخانه‌های پایتون
-echo "نصب کتابخانه‌های پایتون..."
-pip install -r requirements.txt
+# نصب کتابخانه‌های پایتون با استفاده از مسیر مستقیم pip
+echo "نصب کتابخانه‌های پایتون با استفاده از مسیر مستقیم pip..."
+venv/bin/pip install --upgrade pip
+venv/bin/pip install -r requirements.txt
 
 # ایجاد فایل تنظیمات (اگر وجود ندارد) و جایگزینی مقادیر
 if [ ! -f "config.py" ]; then
