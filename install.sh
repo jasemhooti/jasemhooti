@@ -23,8 +23,10 @@ if [ -d "$BOT_FOLDER" ]; then
     rm -rf "$BOT_FOLDER"
 fi
 
-echo "دانلود سورس کد از $REPOSITORY_URL..."
-git clone "$REPOSITORY_URL"
+if [ -d "jasemhooti" ]; then
+    echo "پوشه jasemhooti از قبل وجود دارد. حذف می‌شود..."
+    rm -rf "jasemhooti"
+fi
 
 # رفتن به پوشه ربات
 cd "jasemhooti"
