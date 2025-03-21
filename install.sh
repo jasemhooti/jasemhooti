@@ -9,7 +9,7 @@ echo "شروع فرآیند نصب ربات NetBox..."
 # نصب پیش‌نیازها
 echo "نصب پیش‌نیازها..."
 sudo apt update
-sudo apt install -y python3 python3-pip git screen
+sudo apt install -y python3 python3-pip git screen python3-venv  # نصب python3-venv
 
 # ارتقاء pip
 pip3 install --upgrade pip
@@ -29,9 +29,17 @@ git clone "$REPOSITORY_URL"
 # رفتن به پوشه ربات
 cd "$BOT_FOLDER"
 
+# ایجاد محیط مجازی
+echo "ایجاد محیط مجازی پایتون..."
+python3 -m venv venv
+
+# فعال کردن محیط مجازی
+echo "فعال کردن محیط مجازی..."
+source venv/bin/activate
+
 # نصب کتابخانه‌های پایتون
 echo "نصب کتابخانه‌های پایتون..."
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 
 # ایجاد فایل تنظیمات (اگر وجود ندارد) و جایگزینی مقادیر
 if [ ! -f "config.py" ]; then
@@ -56,10 +64,13 @@ sed -i "s/YOUR_XUI_PANEL_USERNAME/jasemhooti/g" config.py
 # جایگزینی رمز عبور پنل X-UI
 sed -i "s/YOUR_XUI_PANEL_PASSWORD/JasemhootI6906/g" config.py
 
-# اجرای ربات در یک screen جداگانه
-echo "اجرای ربات در پس‌زمینه..."
-screen -dmS netbox_bot python3 main.py
+# اجرای ربات در یک screen جداگانه از داخل محیط مجازی
+echo "اجرای ربات در پس‌زمینه از داخل محیط مجازی..."
+screen -dmS netbox_bot venv/bin/python main.py
 
 echo "ربات NetBox با موفقیت نصب و اجرا شد!"
 echo "برای مشاهده لاگ‌ها:"
 echo "screen -r netbox_bot"
+
+# غیرفعال کردن محیط مجازی (اختیاری، معمولاً نیازی نیست)
+# deactivate
